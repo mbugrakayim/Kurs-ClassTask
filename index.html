@@ -63,7 +63,7 @@
     // getOrders().then(e => {
     //     var usa = "usa";
     //     var filterOrders = e.filter(a => a.shipAddress.country.toLowerCase().includes(usa.toLocaleLowerCase()))
-        
+
     //     console.log("Country USA Olan Toplam " + filterOrders.length + " Ülke Var");
 
     // }
@@ -75,10 +75,38 @@
         b- geçiken siparişleri consola yaz.
     */
 
-    getOrders().then( e => {
 
-        var filterDate = e.filter( a => a.orderDate === 1996)
-       console.log(filterDate);
+    // 1996 Yılı
+    // getOrders().then(e => {
+
+
+    //     var filterOrders = e.filter(a => {
+    //         var date = new Date(a.orderDate);
+    //         return (date.getFullYear() === 1996);
+    //     })
+
+    //     console.log(filterOrders);
+
+
+    // })
+
+
+    //Geçiken Sipariş
+    getOrders().then(e => {
+
+
+        var filterOrders = e.filter(a => {
+            //istenen tarih
+            var date = new Date(a.requiredDate);
+            //gönderilen tarih
+            var date2 = new Date(a.shippedDate)
+
+            return (date < date2);
+        })
+
+        console.log(filterOrders);
+
+
     })
 
 
